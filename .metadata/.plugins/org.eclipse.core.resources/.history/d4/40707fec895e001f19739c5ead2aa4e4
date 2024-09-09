@@ -1,0 +1,5 @@
+package tobispring.repo;
+
+public interface UserRepo {
+
+}

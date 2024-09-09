@@ -1,0 +1,42 @@
+package tobispring.controller;
+//UserController.java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import tobispring.model.*;
+import tobispring.repo.*;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+ @Autowired
+ private UserRepo userRepo;
+
+ @PostMapping
+ public User createUser(@RequestBody User user) {
+     return userRepo.save(user);
+ }
+
+ @GetMapping
+ public List<User> getAllUsers() {
+     return userRepo.getAllUsers();
+ }
+
+ @GetMapping("/{id}")
+ public User getUserById(@PathVariable Long id) {
+     return userRepo.getUserById(id);
+ }
+
+ @PutMapping("/{id}")
+ public User updateUser(@PathVariable Long id, @RequestBody User user) {
+     return userRepo.updateUser(id, user);
+ }
+
+ @DeleteMapping("/{id}")
+ public void deleteUser(@PathVariable Long id) {
+     userRepo.deleteUser(id);
+ }
+}
